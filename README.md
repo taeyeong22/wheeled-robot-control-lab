@@ -18,7 +18,7 @@ The project progresses from mathematical modeling and Python simulation to contr
 * [x] Record position, yaw, and velocity histories
 * [x] Visualize the vehicle trajectory
 * [x] Save simulation results as images
-* [ ] Generate a reference path
+* [x] Generate a reference path
 * [ ] Calculate path-tracking error
 * [ ] Implement Pure Pursuit control
 * [ ] Implement Stanley control
@@ -52,6 +52,12 @@ The state is updated using explicit Euler integration.
 ![Vehicle state history](assets/plots/state_history.png)
 
 The current experiment applies constant acceleration and a constant steering angle. The result shows a curved vehicle trajectory with increasing velocity and yaw angle.
+
+### Reference Path
+
+![Reference path for path tracking](assets/plots/reference_path.png)
+
+A sinusoidal reference path was generated from x = 0 m to x = 20 m. This path will be used to calculate tracking error and evaluate path-tracking controllers.
 
 ## How to Run
 
@@ -90,16 +96,18 @@ wheeled-robot-control-lab/
 │  ├─ 001-research-motivation.md
 │  └─ 002-vehicle-modeling.md
 ├─ simulation/
-│  └─ bicycle_model.py
+│  ├─ bicycle_model.py
+│  └─ reference_path.py
 └─ assets/
    └─ plots/
       ├─ trajectory.png
-      └─ state_history.png
+      ├─ state_history.png
+      └─ reference_path.png
 ```
 
 ## Next Step
 
-The next experiment will generate a reference path and calculate the lateral tracking error between the desired path and the simulated vehicle position.
+The next experiment will calculate the lateral tracking error between the reference path and the simulated vehicle position.
 
 After that, Pure Pursuit and Stanley controllers will be implemented and compared under the same conditions.
 
