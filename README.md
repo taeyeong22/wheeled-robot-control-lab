@@ -1,69 +1,110 @@
 # Wheeled Robot Control Lab
 
-This repository documents my independent research project on small-scale wheeled mobile robots, vehicle dynamics, and control systems.
+This repository documents an independent research project on wheeled mobile robots, vehicle modeling, and path-tracking control.
 
-The main goal is to build a research-oriented portfolio for graduate study in mechanical engineering, robotics, and autonomous mobility.
+The goal is to build a research-oriented portfolio for graduate study in mechanical engineering, robotics, and autonomous mobility.
 
----
-
-## Project Motivation
-
-I am currently studying Mechanical Control Engineering and interested in wheeled machines such as cars, mobile robots, and autonomous vehicles.
-
-This project started from a simple question:
+## Research Question
 
 > How can a small wheeled vehicle follow a desired path accurately and stably?
 
-Instead of only studying theory, I want to build, simulate, test, and document the process step by step.
+The project progresses from mathematical modeling and Python simulation to controller comparison and small-scale vehicle experiments.
 
----
+## Current Progress
 
-## Research Direction
+* [x] Document the research motivation
+* [x] Study the kinematic bicycle model
+* [x] Implement the bicycle model in Python
+* [x] Record position, yaw, and velocity histories
+* [x] Visualize the vehicle trajectory
+* [x] Save simulation results as images
+* [ ] Generate a reference path
+* [ ] Calculate path-tracking error
+* [ ] Implement Pure Pursuit control
+* [ ] Implement Stanley control
+* [ ] Compare controller performance
+* [ ] Build an RC-car experimental platform
 
-The project focuses on:
+## Implemented Model
 
-- Vehicle dynamics
-- Wheeled mobile robot modeling
-- Path tracking control
-- PID control
-- Pure Pursuit control
-- Stanley controller
-- Sensor-based experiments
-- Small-scale autonomous vehicle platform
+The current simulation uses a kinematic bicycle model with the following state variables:
 
----
+* `x`: longitudinal position
+* `y`: lateral position
+* `yaw`: vehicle heading angle
+* `v`: vehicle velocity
 
-## Current Goals
+The control inputs are:
 
-1. Study basic vehicle modeling
-2. Build a simple 2D vehicle simulation in Python
-3. Implement basic control algorithms
-4. Compare path tracking performance
-5. Build a small RC-car-based experimental platform
-6. Document failures, improvements, and results
+* Acceleration
+* Steering angle
 
----
+The state is updated using explicit Euler integration.
+
+## Simulation Results
+
+### Vehicle Trajectory
+
+![Kinematic bicycle model trajectory](assets/plots/trajectory.png)
+
+### Velocity and Yaw History
+
+![Vehicle state history](assets/plots/state_history.png)
+
+The current experiment applies constant acceleration and a constant steering angle. The result shows a curved vehicle trajectory with increasing velocity and yaw angle.
+
+## How to Run
+
+Install Matplotlib:
+
+```bash
+python -m pip install matplotlib
+```
+
+Run the simulation:
+
+```bash
+python simulation/bicycle_model.py
+```
+
+For a headless environment such as GitHub Codespaces:
+
+```bash
+MPLBACKEND=Agg python simulation/bicycle_model.py
+```
+
+The generated plots are saved in:
+
+```text
+assets/plots/
+├─ trajectory.png
+└─ state_history.png
+```
 
 ## Repository Structure
 
-```txt
+```text
 wheeled-robot-control-lab/
+├─ README.md
 ├─ docs/
 │  ├─ 001-research-motivation.md
-│  ├─ 002-vehicle-modeling.md
-│  ├─ 003-pid-speed-control.md
-│  └─ 004-path-tracking-control.md
+│  └─ 002-vehicle-modeling.md
 ├─ simulation/
-│  ├─ bicycle_model.py
-│  ├─ pid_control.py
-│  └─ pure_pursuit.py
-├─ hardware/
-│  ├─ parts-list.md
-│  └─ test-log.md
-├─ paper-review/
-│  └─ 001-path-tracking.md
-├─ assets/
-│  ├─ images/
-│  └─ plots/
-└─ research-proposal/
-   └─ proposal-draft.md
+│  └─ bicycle_model.py
+└─ assets/
+   └─ plots/
+      ├─ trajectory.png
+      └─ state_history.png
+```
+
+## Next Step
+
+The next experiment will generate a reference path and calculate the lateral tracking error between the desired path and the simulated vehicle position.
+
+After that, Pure Pursuit and Stanley controllers will be implemented and compared under the same conditions.
+
+## References
+
+* [Kinematic Bicycle Model](https://thomasfermi.github.io/Algorithms-for-Automated-Driving/Control/BicycleModel.html)
+* [Matplotlib documentation](https://matplotlib.org/stable/)
+* [Python math module](https://docs.python.org/3/library/math.html)
